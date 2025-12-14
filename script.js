@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // 1. DONNÉES CSV COMPLÈTE ET MISE À JOUR (décembre 2025)
-    const csvData = `"Pos","2024","Title","Director","Year","Country","Mins","Trailer URL"
+    const csvData = `"Pos""","2024","Title","Director","Year","Country","Mins","Trailer URL"
 "1","1","Citizen Kane","Welles, Orson","1941","USA","119","https://www.dailymotion.com/video/x2lbwjq"
 "2","2","Vertigo","Hitchcock, Alfred","1958","USA","128","https://www.dailymotion.com/video/x8e52fg"
 "3","3","2001: A Space Odyssey","Kubrick, Stanley","1968","UK","139","https://www.dailymotion.com/video/x6j5yq2"
 "7","7","8½","Fellini, Federico","1963","Italy","135","https://www.dailymotion.com/video/xasld"
 "11","11","Singin' in the Rain","Donen, Stanley & Gene Kelly","1952","USA","102","https://www.dailymotion.com/video/x2j8o0u"
-"12","12","Jeanne Dielman, 23 Quai du Commerce, 1080 Bruxelles","Akerman, Chantal","1975","Belgium","201","https://www.dailymotion.com/video/x8dl9cq"
 "13","13","Apocalypse Now","Coppola, Francis Ford","1979","USA","150","https://www.dailymotion.com/video/x2lbwjo"
 "15","14","Taxi Driver","Scorsese, Martin","1976","USA","113","https://www.dailymotion.com/video/x3iy55"
 "16","16","Persona","Bergman, Ingmar","1966","Sweden","83","https://www.dailymotion.com/video/x252y1q"
@@ -18,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "24","24","Rashomon","Kurosawa, Akira","1950","Japan","88","https://www.dailymotion.com/video/x24us7s"
 "26","28","Psycho","Hitchcock, Alfred","1960","USA","109","https://www.dailymotion.com/video/x2lbxbc"
 "29","29","Au hasard Balthazar","Bresson, Robert","1966","France","95","https://www.dailymotion.com/video/x8vj7qc"
-"30","30","Mulholland Dr.","Lynch, David","2001","USA","147","https://www.dailymotion.com/video/x4sxlf"
 "31","32","Some Like it Hot","Wilder, Billy","1959","USA","121","https://www.dailymotion.com/video/x28davn"
 "32","33","Ordet","Dreyer, Carl Theodor","1955","Denmark","125","https://www.dailymotion.com/video/x8enyy0"
 "35","35","Raging Bull","Scorsese, Martin","1980","USA","129","https://www.dailymotion.com/video/x89y0iz"
@@ -28,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 "41","45","Touch of Evil","Welles, Orson","1958","USA","108","https://www.dailymotion.com/video/xxjbcu"
 "42","40","Playtime","Tati, Jacques","1967","France","108","https://www.dailymotion.com/video/x20b2zm"
 "44","43","Barry Lyndon","Kubrick, Stanley","1975","UK","183","https://www.dailymotion.com/video/x2lbxvu"
+"45","42","Contempt","Godard, Jean-Luc","1963","France","103","https://www.dailymotion.com/video/x4flg0"
 "46","44","Pather Panchali","Ray, Satyajit","1955","India","112","https://www.dailymotion.com/video/x9p6mn0"
 "47","48","Close-Up","Kiarostami, Abbas","1990","Iran","98","https://www.dailymotion.com/video/x8t4k3g"
 "48","47","Stalker","Tarkovsky, Andrei","1979","USSR","160","https://www.dailymotion.com/video/x84h7y1"
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "51","52","Modern Times","Chaplin, Charles","1936","USA","89","https://www.dailymotion.com/video/xwsxss"
 "52","51","Beau travail","Denis, Claire","1999","France","92","https://www.dailymotion.com/video/x1vlwjn"
 "55","54","M","Lang, Fritz","1931","Germany","99","https://www.dailymotion.com/video/x3d5oi"
-"58","57","Ugetsu monogatari","Mizoguchi, Kenji","1953","Japan","96","https://www.dailymotion.com/video/x1ww7o"
 "60","63","GoodFellas","Scorsese, Martin","1990","USA","146","https://www.dailymotion.com/video/x4fuv"
 "63","65","Rio Bravo","Hawks, Howard","1959","USA","141","https://www.dailymotion.com/video/x89sn4c"
 "65","64","Shoah","Lanzmann, Claude","1985","France","566","https://www.dailymotion.com/video/x8a41s7"
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "70","70","Chinatown","Polanski, Roman","1974","USA","131","https://www.dailymotion.com/video/x8draat"
 "71","71","Do the Right Thing","Lee, Spike","1989","USA","120","https://www.dailymotion.com/video/x4l637m"
 "72","72","Metropolis","Lang, Fritz","1927","Germany","153","https://www.dailymotion.com/video/x2lbusd"
-"76","75","Enfants du paradis, Les","Carné, Marcel","1945","France","195","https://www.dailymotion.com/video/x26mmnn"
 "77","77","Amarcord","Fellini, Federico","1973","Italy","127","https://www.dailymotion.com/video/x9r6vdy"
 "78","79","Pulp Fiction","Tarantino, Quentin","1994","USA","154","https://www.dailymotion.com/video/xc2jlt"
 "80","88","Viridiana","Buñuel, Luis","1961","Spain","90","https://www.dailymotion.com/video/x8tmrwu"
@@ -56,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "94","94","Gertrud","Dreyer, Carl Theodor","1964","Denmark","116","https://www.dailymotion.com/video/x3lx6bk"
 "96","96","Sans soleil","Marker, Chris","1983","France","100","https://www.dailymotion.com/video/x8edzob"
 "98","102","To Be or Not to Be","Lubitsch, Ernst","1942","USA","99","https://www.dailymotion.com/video/x25r7a4"
-"99","98","Jules et Jim","Truffaut, François","1962","France","104","https://www.dailymotion.com/video/x26mvm0"
 "100","99","Meshes of the Afternoon","Deren, Maya & Alexander Hammid","1943","USA","15","https://www.dailymotion.com/video/x8qwux6"
 "102","100","Sátántangó","Tarr, Béla","1994","Hungary","439","https://www.dailymotion.com/video/x8a1kle"
 "104","103","Madame de...","Ophüls, Max","1953","France","105","https://www.dailymotion.com/video/x8qkij2"
@@ -82,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "140","143","Gone with the Wind","Fleming, Victor","1939","USA","222","https://www.dailymotion.com/video/x57cq7"
 "146","147","Nosferatu","Murnau, F.W.","1922","Germany","84","https://www.dailymotion.com/video/x108t9r"
 "147","145","One Flew Over the Cuckoo's Nest","Forman, Milos","1975","USA","133","https://www.dailymotion.com/video/x9ut65m"
-"149","144","Killer of Sheep","Burnett, Charles","1977","USA","83","https://www.dailymotion.com/video/x8foyw4"
 "151","151","Wanda","Loden, Barbara","1970","USA","105","https://www.dailymotion.com/video/x8x8p3a"
 "152","158","Star Wars","Lucas, George","1977","USA","121","https://www.dailymotion.com/video/x89lwdq"
 "153","161","There Will Be Blood","Anderson, Paul Thomas","2007","USA","158","https://www.dailymotion.com/video/x53yhb"
@@ -137,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "265","258","Red River","Hawks, Howard","1948","USA","133","https://www.dailymotion.com/video/xih4lv"
 "267","263","Uncle Boonmee Who Can Recall His Past Lives","Weerasethakul, Apichatpong","2010","Thailand","114","https://www.dailymotion.com/video/x28d7jp"
 "268","264","Heat","Mann, Michael","1995","USA","174","https://www.dailymotion.com/video/x89xvsf"
-"269","262","Night and Fog","Resnais, Alain","1955","France","32","https://www.dailymotion.com/video/x8gham7"
 "271","269","Fargo","Coen, Joel & Ethan Coen","1996","USA","98","https://www.dailymotion.com/video/x8ne7mt"
 "272","272","Black Girl","Sembene, Ousmane","1966","Senegal","65","https://www.dailymotion.com/video/x8pc2j9"
 "274","274","F for Fake","Welles, Orson","1973","France","89","https://www.dailymotion.com/video/x8gwbr1"
@@ -165,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "330","327","Husbands","Cassavetes, John","1970","USA","138","https://www.dailymotion.com/video/xpvio2"
 "332","337","Amadeus","Forman, Milos","1984","USA","158","https://www.dailymotion.com/video/x4exqeq"
 "333","335","Bonnie and Clyde","Penn, Arthur","1967","USA","111","https://www.dailymotion.com/video/x3azt9e"
-"335","328","Pyaasa","Dutt, Guru","1957","India","146","https://www.dailymotion.com/video/x1yhj15"
 "336","332","Underground","Kusturica, Emir","1995","Yugoslavia","167","https://www.dailymotion.com/video/x7m0oqg"
 "342","343","Midnight Cowboy","Schlesinger, John","1969","USA","113","https://www.dailymotion.com/video/x28dam1"
 "345","344","Weekend","Godard, Jean-Luc","1967","France","105","https://www.dailymotion.com/video/x14dldh"
@@ -196,11 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
 "389","393","Nostalghia","Tarkovsky, Andrei","1983","Italy","120","https://www.dailymotion.com/video/x619bkm"
 "390","414","Under the Skin","Glazer, Jonathan","2013","UK","108","https://www.dailymotion.com/video/x8jlzze"
 "391","384","Tristana","Buñuel, Luis","1970","Spain","98","https://www.dailymotion.com/video/x5zo9rs"
-"393","389","Mon oncle","Tati, Jacques","1958","France","126","https://www.dailymotion.com/video/x3b4b0w"
 "394","403","Dogville","von Trier, Lars","2003","Denmark","177","https://www.dailymotion.com/video/x8w7nhw"
 "395","397","Orlando","Potter, Sally","1992","UK","94","https://www.dailymotion.com/video/xkp39l"
 "396","400","Opening Night","Cassavetes, John","1977","USA","144","https://www.dailymotion.com/video/x4yyo2l"
-"397","392","Limite","Peixoto, Mario","1931","Brazil","114","https://www.dailymotion.com/video/xfk7ih"
 "402","415","1900","Bertolucci, Bernardo","1976","Italy","245","https://www.dailymotion.com/video/x8fkm7q"
 "405","396","I Know Where I'm Going!","Powell, Michael & Emeric Pressburger","1945","UK","92","https://www.dailymotion.com/video/x2gu8yr"
 "406","402","Suspiria","Argento, Dario","1977","Italy","92","https://www.dailymotion.com/video/x4mwi7"
@@ -225,9 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 "446","447","Limelight","Chaplin, Charles","1952","USA","145","https://www.dailymotion.com/video/x7e9l"
 "450","487","Toni Erdmann","Ade, Maren","2016","Germany","162","https://www.dailymotion.com/video/x8jfwb8"
 "451","440","French Cancan","Renoir, Jean","1955","France","102","https://www.dailymotion.com/video/x82tcsj"
-"452","461","À nos amours","Pialat, Maurice","1983","France","102","https://www.dailymotion.com/video/xwhmi5"
 "453","448","Koyaanisqatsi","Reggio, Godfrey","1982","USA","87","https://www.dailymotion.com/video/x8dsm8x"
-"456","446","Festen","Vinterberg, Thomas","1998","Denmark","105","https://www.dailymotion.com/video/x101yh"
 "461","482","Dersu Uzala","Kurosawa, Akira","1975","USSR","144","https://www.dailymotion.com/video/x8a47tw"
 "462","467","Grave of the Fireflies","Takahata, Isao","1988","Japan","89","https://www.dailymotion.com/video/x8gbex7"
 "463","452","October","Eisenstein, Sergei & Grigori Aleksandrov","1928","USSR","103","https://www.dailymotion.com/video/x2lbsxz"
@@ -246,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "485","472","Platform","Jia Zhangke","2000","China","154","https://www.dailymotion.com/video/xpwe6w"
 "487","475","Carrie","De Palma, Brian","1976","USA","97","https://www.dailymotion.com/video/x3i8rkj"
 "489","476","Senso","Visconti, Luchino","1954","Italy","123","https://www.dailymotion.com/video/x8u34x4"
-"490","489","Withnail & I","Robinson, Bruce","1987","UK","107","https://www.dailymotion.com/video/x2gu770"
 "492","481","Once Upon a Time in Anatolia","Ceylan, Nuri Bilge","2011","Turkey","157","https://www.dailymotion.com/video/x1xn8uj"
 "493","485","Zama","Martel, Lucrecia","2017","Argentina","115","https://www.dailymotion.com/video/x6nsntd"
 "495","537","Fight Club","Fincher, David","1999","USA","139","https://www.dailymotion.com/video/x20p75o"
@@ -284,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "546","541","Nostalgia for the Light","Guzmán, Patricio","2010","France","90","https://www.dailymotion.com/video/x28d7qb"
 "548","538","Man of Aran","Flaherty, Robert J.","1934","UK","77","https://www.dailymotion.com/video/xbz6ro"
 "552","546","Picnic at Hanging Rock","Weir, Peter","1975","Australia","110","https://www.dailymotion.com/video/x6lm5ub"
-"553","540","Je, tu, il, elle","Akerman, Chantal","1974","Belgium","86","https://www.dailymotion.com/video/x8ftrvz"
 "554","558","Se7en","Fincher, David","1995","USA","127","https://www.dailymotion.com/video/x2249l"
 "555","556","Punch-Drunk Love","Anderson, Paul Thomas","2002","USA","95","https://www.dailymotion.com/video/x8p85p5"
 "556","545","Strangers on a Train","Hitchcock, Alfred","1951","USA","101","https://www.dailymotion.com/video/x9tvvz2"
@@ -296,15 +283,12 @@ document.addEventListener('DOMContentLoaded', () => {
 "566","563","Morvern Callar","Ramsay, Lynne","2002","UK","97","https://www.dailymotion.com/video/xpwkcp"
 "567","608","As I Was Moving Ahead Occasionally I Saw Brief Glimpses of Beauty","Mekas, Jonas","2000","USA","288","https://www.dailymotion.com/video/xvw26b"
 "569","566","Brokeback Mountain","Lee, Ang","2005","USA","134","https://www.dailymotion.com/video/xd6au5"
-"570","557","Fellini Satyricon","Fellini, Federico","1969","Italy","129","https://www.dailymotion.com/video/x8hzeqs"
-"573","578","Mad Max 2","Miller, George","1981","Australia","96","https://www.dailymotion.com/video/xrj9hb"
 "580","581","Easy Rider","Hopper, Dennis","1969","USA","94","https://www.dailymotion.com/video/x8sva90"
 "581","577","Laura","Preminger, Otto","1944","USA","85","https://www.dailymotion.com/video/xnpd10"
 "585","576","That Obscure Object of Desire","Buñuel, Luis","1977","France","103","https://www.dailymotion.com/video/xtp0zo"
 "586","613","Forrest Gump","Zemeckis, Robert","1994","USA","142","https://www.dailymotion.com/video/x2lbwe9"
 "587","580","Barton Fink","Coen, Joel & Ethan Coen","1991","USA","117","https://www.dailymotion.com/video/x2lbul4"
 "589","669","Plácido","García Berlanga, Luis","1961","Spain","85","https://www.dailymotion.com/video/x2hzjm3"
-"590","591","Bande à part","Godard, Jean-Luc","1964","France","95","https://www.dailymotion.com/video/x9r2vys"
 "593","586","Halloween","Carpenter, John","1978","USA","93","https://www.dailymotion.com/video/x6ldui6"
 "594","610","Amélie","Jeunet, Jean-Pierre","2001","France","122","https://www.dailymotion.com/video/x85yym"
 "597","595","Jurassic Park","Spielberg, Steven","1993","USA","127","https://www.dailymotion.com/video/xktefw"
@@ -324,25 +308,21 @@ document.addEventListener('DOMContentLoaded', () => {
 "615","620","Deliverance","Boorman, John","1972","USA","109","https://www.dailymotion.com/video/x929z2g"
 "616","653","Down by Law","Jarmusch, Jim","1986","USA","107","https://www.dailymotion.com/video/x7cc60e"
 "620","604","Providence","Resnais, Alain","1977","France","110","https://www.dailymotion.com/video/x50bldy"
-"622","619","Shadows","Cassavetes, John","1959","USA","87","https://www.dailymotion.com/video/x50bjk9"
 "628","617","Scorpio Rising","Anger, Kenneth","1963","USA","28","https://www.dailymotion.com/video/xrsmu"
 "631","622","Pink Flamingos","Waters, John","1972","USA","92","https://www.dailymotion.com/video/x9qg0r"
 "632","626","Portrait of Jason","Clarke, Shirley","1967","USA","105","https://www.dailymotion.com/video/x8gj783"
 "633","631","Alphaville","Godard, Jean-Luc","1965","France","95","https://www.dailymotion.com/video/x22vf2m"
-"634","634","Don't Look Back","Pennebaker, D.A.","1967","USA","96","https://www.dailymotion.com/video/x8pnqwm"
 "636","644","Rebecca","Hitchcock, Alfred","1940","USA","130","https://www.dailymotion.com/video/x4yyohj"
 "637","635","Hour of the Wolf","Bergman, Ingmar","1968","Sweden","88","https://www.dailymotion.com/video/x89k8ow"
 "639","629","Harakiri","Kobayashi, Masaki","1962","Japan","133","https://www.dailymotion.com/video/x2l5862"
 "640","647","Casque d'or","Becker, Jacques","1952","France","96","https://www.dailymotion.com/video/x3azw5l"
 "642","648","Titanic","Cameron, James","1997","USA","194","https://www.dailymotion.com/video/x31nh8z"
-"645","637","Hana-bi","Kitano, Takeshi","1997","Japan","103","https://www.dailymotion.com/video/x8epglk"
 "647","646","Frankenstein","Whale, James","1931","USA","70","https://www.dailymotion.com/video/x1f7g80"
 "648","641","Rocky","Avildsen, John G.","1976","USA","119","https://www.dailymotion.com/video/x7dxuv"
 "650","640","My Own Private Idaho","Van Sant, Gus","1991","USA","102","https://www.dailymotion.com/video/xqrwr2"
 "651","659","Scarface","Hawks, Howard","1932","USA","93","https://www.dailymotion.com/video/x2i7a"
 "653","654","Strike","Eisenstein, Sergei","1925","USSR","82","https://www.dailymotion.com/video/x8ldpxu"
 "654","639","Hoop Dreams","James, Steve","1994","USA","170","https://www.dailymotion.com/video/x8omm48"
-"655","671","Nazarín","Buñuel, Luis","1958","Mexico","94","https://www.dailymotion.com/video/x7res7x"
 "656","678","Ratcatcher","Ramsay, Lynne","1999","UK","94","https://www.dailymotion.com/video/x8u5zmo"
 "657","643","Walkabout","Roeg, Nicolas","1971","UK","100","https://www.dailymotion.com/video/x8tie9u"
 "662","650","Xala","Sembene, Ousmane","1975","Senegal","123","https://www.dailymotion.com/video/x8ro2nt"
@@ -357,7 +337,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "686","691","Robocop","Verhoeven, Paul","1987","USA","102","https://www.dailymotion.com/video/x7p0uei"
 "687","706","When Harry Met Sally...","Reiner, Rob","1989","USA","95","https://www.dailymotion.com/video/x2gsmbr"
 "690","681","Trainspotting","Boyle, Danny","1996","UK","95","https://www.dailymotion.com/video/x8ygkry"
-"691","677","Hyènes","Diop Mambéty, Djibril","1992","Senegal","110","https://www.dailymotion.com/video/x8a2grk"
 "692","679","Mr. Smith Goes to Washington","Capra, Frank","1939","USA","129","https://www.dailymotion.com/video/x28davj"
 "693","749","Distant","Ceylan, Nuri Bilge","2002","Turkey","110","https://www.dailymotion.com/video/x8lod3g"
 "695","684","Local Hero","Forsyth, Bill","1983","UK","111","https://www.dailymotion.com/video/x9r29q8"
@@ -368,9 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
 "704","732","Fish Tank","Arnold, Andrea","2009","UK","123","https://www.dailymotion.com/video/x2l5bm3"
 "705","689","Cure","Kurosawa, Kiyoshi","1997","Japan","111","https://www.dailymotion.com/video/x8fqmaq"
 "707","704","Roma","Cuarón, Alfonso","2018","Mexico","135","https://www.dailymotion.com/video/x8dpd7n"
-"709","701","Lancelot du Lac","Bresson, Robert","1974","France","85","https://www.dailymotion.com/video/x9h94pe"
 "711","702","Before Sunset","Linklater, Richard","2004","USA","80","https://www.dailymotion.com/video/x8poxux"
-"712","690","Nouvelle vague","Godard, Jean-Luc","1990","France","90","https://www.dailymotion.com/video/x9rscbu"
 "713","697","Salesman","Maysles, Albert/David Maysles/Charlotte Zwerin","1969","USA","91","https://www.dailymotion.com/video/x8sha64"
 "714","699","Sauve qui peut (la vie)","Godard, Jean-Luc","1980","France","87","https://www.dailymotion.com/video/x8a2mwy"
 "716","714","Carol","Haynes, Todd","2015","UK","118","https://www.dailymotion.com/video/x3kzz0e"
@@ -379,7 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "724","772","Malcolm X","Lee, Spike","1992","USA","201","https://www.dailymotion.com/video/x8m6j4v"
 "725","728","Ben-Hur","Wyler, William","1959","USA","212","https://www.dailymotion.com/video/x7thupb"
 "726","724","Antonio das Mortes","Rocha, Glauber","1969","Brazil","95","https://www.dailymotion.com/video/x8e4i4m"
-"731","722","One Way or Another","Gómez, Sara","1977","Cuba","78","https://www.dailymotion.com/video/x1zqi7"
 "732","726","Stand by Me","Reiner, Rob","1986","USA","89","https://www.dailymotion.com/video/x5wiu9z"
 "734","754","Dazed and Confused","Linklater, Richard","1993","USA","103","https://www.dailymotion.com/video/x1itw8"
 "735","723","Moonfleet","Lang, Fritz","1955","USA","89","https://www.dailymotion.com/video/x109npm"
@@ -389,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "745","731","New York, New York","Scorsese, Martin","1977","USA","155","https://www.dailymotion.com/video/xjtgf6"
 "746","743","Phantom of the Paradise","De Palma, Brian","1974","USA","91","https://www.dailymotion.com/video/x2lbnn0"
 "753","740","Triumph of the Will","Riefenstahl, Leni","1935","Germany","110","https://www.dailymotion.com/video/x9dlt"
-"755","771","Diaries, Notes and Sketches","Mekas, Jonas","1969","USA","177","https://www.dailymotion.com/video/x31x34f"
 "758","761","Born in Flames","Borden, Lizzie","1983","USA","79","https://www.dailymotion.com/video/x8jod5j"
 "761","790","Fort Apache","Ford, John","1948","USA","127","https://www.dailymotion.com/video/x9r8zu6"
 "762","746","Subarnarekha","Ghatak, Ritwik","1965","India","126","https://www.dailymotion.com/video/x8gi52w"
@@ -398,14 +373,12 @@ document.addEventListener('DOMContentLoaded', () => {
 "765","770","Lolita","Kubrick, Stanley","1962","UK","152","https://www.dailymotion.com/video/x2lbx6p"
 "771","758","Veronika Voss","Fassbinder, Rainer Werner","1982","West Germany","105","https://www.dailymotion.com/video/x11tt7t"
 "773","759","Vive L'Amour","Tsai Ming-liang","1994","Taiwan","118","https://www.dailymotion.com/video/x8esrvp"
-"774","765","Ossessione","Visconti, Luchino","1943","Italy","140","https://www.dailymotion.com/video/x5dohp"
 "775","764","Hellzapoppin'","Potter, H.C.","1941","USA","84","https://www.dailymotion.com/video/x8gp8b0"
 "777","762","Good Morning","Ozu, Yasujiro","1959","Japan","94","https://www.dailymotion.com/video/x5lfbje"
 "778","763","Great Expectations","Lean, David","1946","UK","118","https://www.dailymotion.com/video/x8idqai"
 "780","787","Mamma Roma","Pasolini, Pier Paolo","1962","Italy","110","https://www.dailymotion.com/video/x11gcs3"
 "782","807","JFK","Stone, Oliver","1991","USA","189","https://www.dailymotion.com/video/x89xylx"
 "784","786","Morocco","von Sternberg, Josef","1930","USA","92","https://www.dailymotion.com/video/xxj90y"
-"785","817","Chikamatsu monogatari","Mizoguchi, Kenji","1954","Japan","100","https://www.dailymotion.com/video/x454j1o"
 "787","767","Wings","Shepitko, Larisa","1966","USSR","85","https://www.dailymotion.com/video/x8mqf21"
 "792","794","Miller's Crossing","Coen, Joel & Ethan Coen","1990","USA","115","https://www.dailymotion.com/video/xx2e3a"
 "793","792","Ferris Bueller's Day Off","Hughes, John","1986","USA","103","https://www.dailymotion.com/video/x75p5wt"
@@ -423,7 +396,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "810","818","Van Gogh","Pialat, Maurice","1991","France","158","https://www.dailymotion.com/video/x25r791"
 "812","799","Forbidden Games","Clément, René","1952","France","87","https://www.dailymotion.com/video/x8k5dsg"
 "815","809","Broadcast News","Brooks, James L.","1987","USA","133","https://www.dailymotion.com/video/x8geohc"
-"816","832","Sur, El","Erice, Víctor","1983","Spain","95","https://www.dailymotion.com/video/x8xseio"
 "817","805","Rose Hobart","Cornell, Joseph","1936","USA","20","https://www.dailymotion.com/video/x8fasbz"
 "819","811","Still Life","Jia Zhangke","2006","China","113","https://www.dailymotion.com/video/x8fblai"
 "821","808","Passion","Godard, Jean-Luc","1982","France","87","https://www.dailymotion.com/video/x3yd0cd"
@@ -446,26 +418,20 @@ document.addEventListener('DOMContentLoaded', () => {
 "848","869","Angel","Lubitsch, Ernst","1937","USA","91","https://www.dailymotion.com/video/xhx5ck"
 "849","856","Point Break","Bigelow, Kathryn","1991","USA","122","https://www.dailymotion.com/video/x51bu52"
 "852","845","Once Upon a Time... in Hollywood","Tarantino, Quentin","2019","USA","161","https://www.dailymotion.com/video/x9st5do"
-"854","934","Mon oncle d'Amérique","Resnais, Alain","1980","France","123","https://www.dailymotion.com/video/x4u2urd"
 "856","861","Starship Troopers","Verhoeven, Paul","1997","USA","129","https://www.dailymotion.com/video/x9p7e58"
 "857","866","Blue is the Warmest Colour","Kechiche, Abdellatif","2013","France","179","https://www.dailymotion.com/video/x139b66"
 "858","873","Mikey and Nicky","May, Elaine","1976","USA","106","https://www.dailymotion.com/video/xpy07j"
-"860","857","Toute une nuit","Akerman, Chantal","1982","Belgium","90","https://www.dailymotion.com/video/x8lp1qu"
 "861","851","Shame","Bergman, Ingmar","1968","Sweden","103","https://www.dailymotion.com/video/x2lbu49"
 "862","844","They Were Expendable","Ford, John","1945","USA","135","https://www.dailymotion.com/video/x9psaag"
-"864","846","Sicilia!","Straub, Jean-Marie & Danièle Huillet","1999","Italy","66","https://www.dailymotion.com/video/x563zt6"
 "865","867","Clueless","Heckerling, Amy","1995","USA","97","https://www.dailymotion.com/video/x33swns"
 "868","889","Saving Private Ryan","Spielberg, Steven","1998","USA","169","https://www.dailymotion.com/video/x2b3kz"
-"869","855","Spione","Lang, Fritz","1928","Germany","90","https://www.dailymotion.com/video/x31vc77"
 "870","859","Shanghai Express","von Sternberg, Josef","1932","USA","82","https://www.dailymotion.com/video/x8m8gke"
 "872","858","Breakfast at Tiffany's","Edwards, Blake","1961","USA","115","https://www.dailymotion.com/video/x7ddtn"
 "873","874","Gloria","Cassavetes, John","1980","USA","121","https://www.dailymotion.com/video/xl1ru6"
 "875","924","Cría cuervos","Saura, Carlos","1976","Spain","110","https://www.dailymotion.com/video/x8sf65k"
-"876","868","Outskirts","Barnet, Boris","1933","USSR","98","https://www.dailymotion.com/video/x9s9x3"
 "877","875","Monty Python and the Holy Grail","Gilliam, Terry & Terry Jones","1975","UK","90","https://www.dailymotion.com/video/x139xc"
 "888","898","Who's Afraid of Virginia Woolf?","Nichols, Mike","1966","USA","129","https://www.dailymotion.com/video/x8jqb9b"
 "895","899","Airplane!","Abrahams, Jim/David Zucker/Jerry Zucker","1980","USA","86","https://www.dailymotion.com/video/x8dyyoc"
-"896","897","Caro diario","Moretti, Nanni","1993","Italy","100","https://www.dailymotion.com/video/x93vkpm"
 "897","894","Showgirls","Verhoeven, Paul","1995","USA","128","https://www.dailymotion.com/video/x2e4ixl"
 "899","915","They Live","Carpenter, John","1988","USA","93","https://www.dailymotion.com/video/x8ds5rz"
 "900","902","Zabriskie Point","Antonioni, Michelangelo","1970","USA","112","https://www.dailymotion.com/video/x497n0n"
@@ -476,9 +442,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "914","928","Meek's Cutoff","Reichardt, Kelly","2010","USA","104","https://www.dailymotion.com/video/x28de38"
 "915","911","Welfare","Wiseman, Frederick","1975","USA","167","https://www.dailymotion.com/video/xbwz0g"
 "917","949","Tabu","Gomes, Miguel","2012","Portugal","118","https://www.dailymotion.com/video/x8j07ek"
-"918","909","Ceddo","Sembene, Ousmane","1977","Senegal","120","https://www.dailymotion.com/video/x5mmkmz"
-"921","917","Night of the Demon","Tourneur, Jacques","1957","UK","95","https://www.dailymotion.com/video/x8e5bcl"
-"924","923","Cemetery of Splendour","Weerasethakul, Apichatpong","2015","Thailand","122","https://www.dailymotion.com/video/x31ei7h"
 "928","946","Before Sunrise","Linklater, Richard","1995","USA","101","https://www.dailymotion.com/video/x8x57m4"
 "930","963","Shaun of the Dead","Wright, Edgar","2004","UK","99","https://www.dailymotion.com/video/x6dyra"
 "931","925","Reds","Beatty, Warren","1981","USA","200","https://www.dailymotion.com/video/x2lbuyn"
@@ -509,257 +472,247 @@ document.addEventListener('DOMContentLoaded', () => {
 "996","987","Sholay","Sippy, Ramesh","1975","India","162","https://www.dailymotion.com/video/x8yey86"
 "997","991","Ed Wood","Burton, Tim","1994","USA","124","https://www.dailymotion.com/video/x527nr"
 "998","985","Sweetie","Campion, Jane","1989","Australia","97","https://www.dailymotion.com/video/x34bwef"
+
 `;
 
     // 🔑 OMDb API KEY (keep it private in production!)
-const OMDB_API_KEY = "98e4893e"; 
-// Note: You should replace the API key above with your actual key if you deploy this.
+    const OMDB_API_KEY = "98e4893e"; 
 
-const FILM_ROTATION_INTERVAL_MINUTES = 1; // Rotation toutes les 1 minute
-const MILLISECONDS_PER_MINUTE = 60000;
+    const FILM_ROTATION_INTERVAL_MINUTES = 1; 
+    const MILLISECONDS_PER_MINUTE = 60000;
 
-let films = [];
+    let films = [];
 
-// DOM ELEMENTS
-const filmTitle = document.getElementById('film-title');
-const filmQuote = document.getElementById('film-quote');
-const filmPosterImg = document.getElementById('film-poster-img');
-const movieTrailerIframe = document.getElementById('movie-trailer');
-const checkBtn = document.getElementById('check-film-btn');
-const userCountSpan = document.getElementById('user-count');
-const gomoviesLink = document.getElementById('gomovies-link');
-// NOUVEAU: Élément pour le compte à rebours (en supposant l'ID 'countdown-timer')
-const countdownTimer = document.getElementById('countdown-timer');
+    // DOM ELEMENTS
+    const filmTitle = document.getElementById('film-title');
+    const filmQuote = document.getElementById('film-quote');
+    const filmPosterImg = document.getElementById('film-poster-img');
+    const movieTrailerIframe = document.getElementById('movie-trailer');
+    const checkBtn = document.getElementById('check-film-btn');
+    const userCountSpan = document.getElementById('user-count');
+    const gomoviesLink = document.getElementById('gomovies-link');
+    const countdownTimer = document.getElementById('countdown-timer');
 
 
-// --- ROBUST CSV PARSING ---
-function parseCSV(csvString) {
-    const lines = csvString.trim().split('\n');
-    const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
-    const data = [];
+    // --- ROBUST CSV PARSING ---
+    function parseCSV(csvString) {
+        const lines = csvString.trim().split('\n');
+        // Vérifie si la chaîne est vide ou seulement des sauts de ligne
+        if (lines.length <= 1 && lines[0].trim() === "") return []; 
+        
+        const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
+        const data = [];
 
-    for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line) continue;
-        const values = line.match(/(?:"[^"]*"|[^,])+/g) || [];
-        const cleanedValues = values.map(v => v.replace(/^"|"$/g, '').trim());
-        if (cleanedValues.length === headers.length) {
-            let obj = {};
-            headers.forEach((header, idx) => obj[header] = cleanedValues[idx]);
-            data.push(obj);
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            // Utilisation d'une regex pour gérer les virgules à l'intérieur des guillemets
+            const values = line.match(/(?:"[^"]*"|[^,])+/g) || []; 
+            const cleanedValues = values.map(v => v.replace(/^"|"$/g, '').trim());
+            
+            if (cleanedValues.length === headers.length) {
+                let obj = {};
+                headers.forEach((header, idx) => obj[header] = cleanedValues[idx]);
+                data.push(obj);
+            }
+        }
+        return data;
+    }
+
+    // --- GENERATE GOMOVIES LINK (COMPATIBLE 2025) ---
+    function generateGoMoviesLink(title) {
+        if (!title) return '#';
+        let slug = title
+            .toLowerCase()
+            .replace(/,\s*(the|a|an)$/i, '') 
+            .replace(/[^a-z0-9\s-]/g, '')     
+            .trim()
+            .replace(/\s+/g, '-');            
+        slug = slug.replace(/-+$/, '');
+        return `https://gomovies.ms/search/${slug}`;
+    }
+
+    // --- DAILYMOTION ID EXTRACTION ---
+    function extractDailymotionId(url) {
+        const match = url.match(/\/video\/([a-zA-Z0-9]+)/);
+        return match ? match[1] : 'x5hyokx';
+    }
+
+    // --- FETCH OMDb ---
+    async function fetchFilmDetails(title, year) {
+        if (OMDB_API_KEY === "VOTRE_CLE_OMDB") return null;
+
+        let cleanTitle = title.replace(/,\s*(The|A|An)$/i, '');
+        const url = `https://www.omdbapi.com/?t=${encodeURIComponent(cleanTitle)}&y=${year}&apikey=${OMDB_API_KEY}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data.Response === "True") {
+                return {
+                    title: data.Title,
+                    plot: data.Plot,
+                    poster: data.Poster !== "N/A" ? data.Poster : 'poster-default.jpg',
+                };
+            }
+        } catch (error) {
+            console.error("OMDb Error:", error);
+        }
+        return null;
+    }
+
+    // --- UPDATE DISPLAY ---
+    function updateFilmDisplay(filmDetails, fallbackData) {
+        const data = filmDetails || fallbackData;
+        const title = data.title || fallbackData.Title;
+        const poster = filmDetails ? filmDetails.poster : 'poster-default.jpg';
+        const trailerId = extractDailymotionId(fallbackData['Trailer URL']);
+
+        filmTitle.textContent = title ? title.toUpperCase() : "UNKNOWN FILM";
+
+        if (filmDetails && filmDetails.plot) {
+            filmQuote.textContent = `"${filmDetails.plot}"`;
+        } else {
+            filmQuote.textContent = `Directed by ${fallbackData.Director} (${fallbackData.Year}).`;
+        }
+
+        filmPosterImg.src = poster;
+        filmPosterImg.alt = `Poster of ${title}`;
+
+        movieTrailerIframe.src = `https://www.dailymotion.com/embed/video/${trailerId}?autoplay=1&mute=1&controls=1&ui-logo=0&ui-theme=dark&queue-enable=false&endscreen-enable=false`;
+
+        gomoviesLink.href = generateGoMoviesLink(title);
+        gomoviesLink.target = "_blank"; 
+        gomoviesLink.rel = "noopener";
+    }
+
+    // --- CORE FUNCTION: CALCULATE FILM INDEX BASED ON TIME ---
+    function calculateFilmIndex() {
+        if (films.length === 0) return 0;
+        
+        // Utilisation d'UTC pour une synchronisation mondiale
+        const now = new Date();
+        const startOfDay = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0));
+        
+        const elapsedMs = now.getTime() - startOfDay.getTime();
+        
+        const elapsedUnits = Math.floor(elapsedMs / (FILM_ROTATION_INTERVAL_MINUTES * MILLISECONDS_PER_MINUTE));
+        
+        const index = elapsedUnits % films.length;
+        
+        return index;
+    }
+
+    // --- MISE À JOUR DU COMPTE À REBOURS ---
+    function updateCountdown() {
+        if (!countdownTimer) return; 
+        
+        const now = new Date();
+        const msInCurrentMinute = (now.getSeconds() * 1000) + now.getMilliseconds();
+        const msUntilChange = MILLISECONDS_PER_MINUTE - msInCurrentMinute;
+        
+        const totalSeconds = Math.ceil(msUntilChange / 1000); 
+        
+        const secondsDisplay = String(totalSeconds % 60).padStart(2, '0');
+        const minutesDisplay = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+
+        if (totalSeconds > 0) {
+            countdownTimer.textContent = `NEXT CHANGE IN ${minutesDisplay}:${secondsDisplay}`;
+        } else {
+            countdownTimer.textContent = "CHANGING FILM...";
         }
     }
-    return data;
-}
 
-// --- GENERATE GOMOVIES LINK (COMPATIBLE 2025) ---
-function generateGoMoviesLink(title) {
-    if (!title) return '#';
 
-    let slug = title
-        .toLowerCase()
-        .replace(/,\s*(the|a|an)$/i, '') 
-        .replace(/[^a-z0-9\s-]/g, '')     
-        .trim()
-        .replace(/\s+/g, '-');            
+    // --- LOAD FILM ---
+    async function loadFilm(index) {
+        if (films.length === 0) return;
+        
+        const filmCSV = films[index];
+        const details = await fetchFilmDetails(filmCSV.Title, filmCSV.Year);
 
-    slug = slug.replace(/-+$/, '');
-    return `https://gomovies.ms/search/${slug}`;
-}
+        updateFilmDisplay(details, filmCSV);
+        
+        checkBtn.textContent = '🎬 I\'ll Watch It!';
+        checkBtn.disabled = false;
 
-// --- DAILYMOTION ID EXTRACTION ---
-function extractDailymotionId(url) {
-    const match = url.match(/\/video\/([a-zA-Z0-9]+)/);
-    return match ? match[1] : 'x5hyokx';
-}
-
-// --- FETCH OMDb ---
-async function fetchFilmDetails(title, year) {
-    if (OMDB_API_KEY === "VOTRE_CLE_OMDB") return null;
-
-    let cleanTitle = title.replace(/,\s*(The|A|An)$/i, '');
-    const url = `https://www.omdbapi.com/?t=${encodeURIComponent(cleanTitle)}&y=${year}&apikey=${OMDB_API_KEY}`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if (data.Response === "True") {
-            return {
-                title: data.Title,
-                plot: data.Plot,
-                poster: data.Poster !== "N/A" ? data.Poster : 'poster-default.jpg',
-            };
+        const today = new Date().toDateString();
+        const dailySeed = `${today}-${filmCSV.Title}`;
+        let hash = 0;
+        for (let i = 0; i < dailySeed.length; i++) {
+            const char = dailySeed.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash |= 0; 
         }
-    } catch (error) {
-        console.error("OMDb Error:", error);
+        let count = Math.abs(hash % 200) + 50; 
+        userCountSpan.textContent = `${count} users are watching today.`;
+        
+        localStorage.setItem('currentFilmCount', count);
     }
-    return null;
-}
-
-// --- UPDATE DISPLAY ---
-function updateFilmDisplay(filmDetails, fallbackData) {
-    const data = filmDetails || fallbackData;
-    const title = data.title || fallbackData.Title;
-    const poster = filmDetails ? filmDetails.poster : 'poster-default.jpg';
-    const trailerId = extractDailymotionId(fallbackData['Trailer URL']);
-
-    filmTitle.textContent = title ? title.toUpperCase() : "UNKNOWN FILM";
-
-    if (filmDetails && filmDetails.plot) {
-        filmQuote.textContent = `"${filmDetails.plot}"`;
-    } else {
-        filmQuote.textContent = `Directed by ${fallbackData.Director} (${fallbackData.Year}).`;
+    
+    // --- Fonction de rotation du film (utilisée par le timer) ---
+    function rotateFilm() {
+        let newIndex = calculateFilmIndex();
+        loadFilm(newIndex);
     }
 
-    filmPosterImg.src = poster;
-    filmPosterImg.alt = `Poster of ${title}`;
 
-    // Optimized Dailymotion Embed
-    movieTrailerIframe.src = `https://www.dailymotion.com/embed/video/${trailerId}?autoplay=1&mute=1&controls=1&ui-logo=0&ui-theme=dark&queue-enable=false&endscreen-enable=false`;
+    // --- INITIALIZATION & TIMER SETUP ---
+    function initialize() {
+        // NOTE: On suppose que 'csvData' est disponible dans le scope global ou chargé avant ce script.
+        if (typeof csvData === 'undefined') {
+            console.error("Erreur: La variable 'csvData' n'est pas définie. Assurez-vous qu'elle est chargée dans votre HTML.");
+            filmTitle.textContent = "FATAL ERROR: CSV DATA MISSING";
+            return;
+        }
+        
+        // 1. Load Data
+        films = parseCSV(csvData);
+        if (films.length === 0) {
+            filmTitle.textContent = "Error: No films loaded.";
+            return;
+        }
 
-    // Updated GoMovies link
-    gomoviesLink.href = generateGoMoviesLink(title);
-    gomoviesLink.target = "_blank"; 
-    gomoviesLink.rel = "noopener";
-}
+        // 2. Initial Load
+        let currentFilmIndex = calculateFilmIndex();
+        loadFilm(currentFilmIndex);
 
-// --- CORE FUNCTION: CALCULATE FILM INDEX BASED ON TIME ---
-function calculateFilmIndex() {
-    if (films.length === 0) return 0;
-    
-    // 1. Calculate elapsed minutes since midnight UTC
-    const now = new Date();
-    // Using UTC to ensure the rotation is the same worldwide regardless of user timezone
-    const startOfDay = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0));
-    
-    // Total milliseconds elapsed since midnight UTC
-    const elapsedMs = now.getTime() - startOfDay.getTime();
-    
-    // Total elapsed units (minutes in this case)
-    const elapsedUnits = Math.floor(elapsedMs / (FILM_ROTATION_INTERVAL_MINUTES * MILLISECONDS_PER_MINUTE));
-    
-    // The current film index is the interval count modulo the total number of films
-    const index = elapsedUnits % films.length;
-    
-    return index;
-}
-
-// --- NOUVELLE FONCTION: MISE À JOUR DU COMPTE À REBOURS ---
-function updateCountdown() {
-    if (!countdownTimer) return; // Sécurité si l'élément n'est pas dans le DOM
-    
-    const now = new Date();
-    // Le changement se produit à la minute entière (0 seconde).
-    // On calcule les millisecondes restantes dans la minute actuelle.
-    const msInCurrentMinute = (now.getSeconds() * 1000) + now.getMilliseconds();
-    const msUntilChange = MILLISECONDS_PER_MINUTE - msInCurrentMinute;
-    
-    // Conversion en secondes et formatage
-    const totalSeconds = Math.ceil(msUntilChange / 1000); // Arrondi à la seconde supérieure
-    
-    const secondsDisplay = String(totalSeconds % 60).padStart(2, '0');
-    // Puisque l'intervalle est de 1 minute, les minutes affichées seront toujours 00.
-    const minutesDisplay = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
-
-    // Affichage
-    if (totalSeconds > 0) {
-        countdownTimer.textContent = `NEXT CHANGE IN ${minutesDisplay}:${secondsDisplay}`;
-    } else {
-        // Juste avant le rechargement du film
-        countdownTimer.textContent = "CHANGING FILM...";
-    }
-}
-
-
-// --- LOAD FILM ---
-async function loadFilm(index) {
-    if (films.length === 0) return;
-    
-    const filmCSV = films[index];
-    const details = await fetchFilmDetails(filmCSV.Title, filmCSV.Year);
-
-    updateFilmDisplay(details, filmCSV);
-    
-    // Reset check button and count for the new film
-    checkBtn.textContent = '🎬 I\'ll Watch It!';
-    checkBtn.disabled = false;
-
-    // Reset the count using a simple hash based on the film title and day
-    const today = new Date().toDateString();
-    const dailySeed = `${today}-${filmCSV.Title}`;
-    let hash = 0;
-    for (let i = 0; i < dailySeed.length; i++) {
-        const char = dailySeed.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash |= 0; 
-    }
-    let count = Math.abs(hash % 200) + 50; 
-    userCountSpan.textContent = `${count} users are watching today.`;
-    
-    // Update local storage with the new count (resetting the "watched" state)
-    localStorage.setItem('currentFilmCount', count);
-}
-
-
-// --- INITIALIZATION & TIMER SETUP ---
-function initialize() {
-    // 1. Load Data
-    // NOTE: La variable 'csvData' doit être définie ici ou dans un script séparé
-    
-    films = parseCSV(csvData);
-    if (films.length === 0) {
-        filmTitle.textContent = "Error: No films loaded.";
-        return;
-    }
-
-    // 2. Initial Load
-    let currentFilmIndex = calculateFilmIndex();
-    loadFilm(currentFilmIndex);
-
-    // 3. Set up Automatic Rotation Timer (Film Change)
-    function startRotationTimer() {
+        // 3. Set up Automatic Rotation Timer (Film Change)
+        
+        // Calcule le délai initial jusqu'à la prochaine minute pleine (0 seconde)
         const now = new Date();
         const seconds = now.getSeconds();
-        
-        // Calcul des millisecondes restantes jusqu'à la prochaine minute (0 seconde)
         const msUntilNextMinute = (60 - seconds) * 1000 - now.getMilliseconds();
         
-        // Assure un délai minimum pour éviter un appel immédiat si on est déjà à 0 seconde
-        const delay = (msUntilNextMinute < 500) ? MILLISECONDS_PER_MINUTE : msUntilNextMinute; 
-
-        console.log(`Next film update in ${Math.round(delay / 1000)} seconds.`);
-
+        // Démarre la première exécution (synchronisée)
         setTimeout(() => {
-            currentFilmIndex = calculateFilmIndex();
-            loadFilm(currentFilmIndex);
+            rotateFilm(); 
             
-            // Re-planifier pour l'intervalle complet de 1 minute
-            setTimeout(startRotationTimer, FILM_ROTATION_INTERVAL_MINUTES * MILLISECONDS_PER_MINUTE);
-        }, delay);
+            // DÉMARRE L'INTERVALLE RÉCURRENT D'UNE MINUTE après la première synchro
+            setInterval(rotateFilm, FILM_ROTATION_INTERVAL_MINUTES * MILLISECONDS_PER_MINUTE);
+            
+        }, msUntilNextMinute);
+
+
+        // 4. Set up Countdown Timer (Visual Update)
+        setInterval(updateCountdown, 1000); 
+
+        // 5. Button Event Listener
+        checkBtn.addEventListener('click', () => {
+            if (checkBtn.disabled) return;
+            
+            let count = parseInt(localStorage.getItem('currentFilmCount')) || 100;
+            count++;
+            
+            userCountSpan.textContent = `${count} users are watching today.`;
+            localStorage.setItem('currentFilmCount', count); 
+            
+            checkBtn.textContent = '✅ Watched!';
+            checkBtn.disabled = true;
+        });
     }
 
-    startRotationTimer();
-
-    // 4. Set up Countdown Timer (Visual Update)
-    // Mettre à jour l'affichage du minuteur toutes les secondes
-    setInterval(updateCountdown, 1000); 
-
-    // 5. Button Event Listener
-    checkBtn.addEventListener('click', () => {
-        if (checkBtn.disabled) return;
-        
-        let count = parseInt(localStorage.getItem('currentFilmCount')) || 100;
-        count++;
-        
-        userCountSpan.textContent = `${count} users are watching today.`;
-        localStorage.setItem('currentFilmCount', count); 
-        
-        checkBtn.textContent = '✅ Watched!';
-        checkBtn.disabled = true;
-    });
-}
-
-// Start the application
-initialize();
+    // Déclenche l'initialisation après le chargement du DOM
+    initialize(); 
 
 });
