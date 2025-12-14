@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineDose - Your Daily Dose of Cinema</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h1>CineDose</h1>
+            <ul>
+                <li><a href="#film-of-the-day">Film of the Hour</a></li>
+                <li><a href="#about">Concept</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="film-of-the-day" class="hero">
+            <div class="film-content">
+                <div class="film-info">
+                    <h2 id="film-title">Film Title</h2>
+                    <p id="countdown-timer" class="timer-display">Next Change: 00:00</p>
+                    <p class="citation" id="film-quote">"A short quote from an AI, encouraging the user to see or rewatch the movie..."</p>
+                    <div class="action-bar">
+                        
+                        
+                        
+                        <a href="#" id="gomovies-link" class="gomovies-btn" target="_blank" title="Watch the film on GoMovies">
+                            Watch on GoMovies
+                        </a>
+                    </div>
+                </div>
+                <div class="film-poster">
+                    <img id="film-poster-img" src="poster-default.jpg" alt="Film Poster">
+                </div>
+            </div>
+        </section>
+
+        <section id="cinema-scene" class="scroll-effect">
+            <h3 class="trailer-title">Trailer</h3>
+            <div class="projector-area">
+                <div class="screen-projection">
+                    <iframe 
+                        id="movie-trailer"
+                        src="" 
+                        frameborder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowfullscreen 
+                        title="Movie Trailer"
+                    ></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="info-area">
+                <div class="about-content">
+                    <h3>Our Concept</h3>
+                    <p>
+                        Do you know this situation? You open Netflix, Prime, or Canal+, thousands of films are available... and you spend an hour hesitating, doubting, only to end up watching nothing at all.
+                    </p>
+                    
+                    <div class="inline-concept-box">
+                        <p>
+                            This is the **paradox of choice** (or "choice overload"), a phenomenon studied by psychologist Barry Schwartz: the more options there are, the harder the decision becomes, and the less satisfaction you feel.
+                        </p>
+                        <p class="core-problem">
+                            CineDose is the simple solution.<br>
+                            **One single cult film** is proposed every 10 minutes.
+                        </p>
+                    </div>
+                    <p>
+                        No endless scrolling, no regrets. We select a significant work for you, you watch it, and you fully enjoy it.
+                    </p>
+                </div>
+                <div class="newsletter-form">
+                    <h3>Stay Informed</h3>
+                    <form id="newsletter-signup">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p style="margin-top: 15px; font-size: 0.8rem; color: #555;">(This is a dummy form)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="realisation">Developed by Lecointre David</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
