@@ -478,8 +478,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // 🔑 OMDb API KEY (keep it private in production!)
     const OMDB_API_KEY = "98e4893e"; 
 
-    const FILM_ROTATION_INTERVAL_MINUTES = 1; 
-    const MILLISECONDS_PER_MINUTE = 60000;
+    // --- CHANGEMENTS MAJEURS ICI : ROTATION QUOTIDIENNE ---
+    const FILM_ROTATION_INTERVAL_DAYS = 1; // Rotation tous les 1 jour
+    const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+    // const FILM_ROTATION_INTERVAL_MINUTES = 1; // ANCIENNE VALEUR
+    // const MILLISECONDS_PER_MINUTE = 60000; // ANCIENNE VALEUR
 
     let films = [];
 
@@ -525,9 +528,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let slug = title
             .toLowerCase()
             .replace(/,\s*(the|a|an)$/i, '') 
-            .replace(/[^a-z0-9\s-]/g, '')     
+            .replace(/[^a-z0-9\s-]/g, '')     
             .trim()
-            .replace(/\s+/g, '-');            
+            .replace(/\s+/g, '-');            
         slug = slug.replace(/-+$/, '');
         return `https://gomovies.ms/search/${slug}`;
     }
@@ -592,13 +595,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Utilisation d'UTC pour une synchronisation mondiale
         const now = new Date();
+        
+        // Calcule le début du jour UTC actuel (minuit UTC)
         const startOfDay = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0));
         
-        const elapsedMs = now.getTime() - startOfDay.getTime();
+        // Le nombre de jours (unités) écoulés depuis l'époque jusqu'à aujourd'hui à minuit UTC.
+        // On prend le temps en ms et on divise par le jour.
+        const elapsedDays = Math.floor(startOfDay.getTime() / MILLISECONDS_PER_DAY);
         
-        const elapsedUnits = Math.floor(elapsedMs / (FILM_ROTATION_INTERVAL_MINUTES * MILLISECONDS_PER_MINUTE));
-        
-        const index = elapsedUnits % films.length;
+        // L'index change une fois par jour
+        const index = elapsedDays % films.length;
         
         return index;
     }
@@ -608,17 +614,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!countdownTimer) return; 
         
         const now = new Date();
-        const msInCurrentMinute = (now.getSeconds() * 1000) + now.getMilliseconds();
-        const msUntilChange = MILLISECONDS_PER_MINUTE - msInCurrentMinute;
+        // Calcule l'heure UTC actuelle
+        const currentUTC = now.getTime() + now.getTimezoneOffset() * 60000;
         
-        const totalSeconds = Math.ceil(msUntilChange / 1000); 
+        // Calcule le temps jusqu'à minuit UTC demain
+        const nextDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + FILM_ROTATION_INTERVAL_DAYS, 0, 0, 0)).getTime();
         
-        const secondsDisplay = String(totalSeconds % 60).padStart(2, '0');
-        const minutesDisplay = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+        const msUntilChange = nextDayUTC - currentUTC;
+        
+        // Conversion en heures, minutes, secondes
+        let remainingSeconds = Math.floor(msUntilChange / 1000);
+        
+        const hoursDisplay = String(Math.floor(remainingSeconds / 3600)).padStart(2, '0');
+        remainingSeconds %= 3600;
+        const minutesDisplay = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
+        const secondsDisplay = String(remainingSeconds % 60).padStart(2, '0');
 
-        if (totalSeconds > 0) {
-            countdownTimer.textContent = `NEXT CHANGE IN ${minutesDisplay}:${secondsDisplay}`;
+        if (remainingSeconds > 0) {
+            countdownTimer.textContent = `NEXT CHANGE IN ${hoursDisplay}:${minutesDisplay}:${secondsDisplay} (UTC midnight)`;
         } else {
+            // Cela ne devrait se produire que très brièvement au moment du changement
             countdownTimer.textContent = "CHANGING FILM...";
         }
     }
@@ -679,19 +694,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 3. Set up Automatic Rotation Timer (Film Change)
         
-        // Calcule le délai initial jusqu'à la prochaine minute pleine (0 seconde)
         const now = new Date();
-        const seconds = now.getSeconds();
-        const msUntilNextMinute = (60 - seconds) * 1000 - now.getMilliseconds();
         
-        // Démarre la première exécution (synchronisée)
+        // Calcule le temps jusqu'à la prochaine occurrence de minuit UTC
+        const nextDayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + FILM_ROTATION_INTERVAL_DAYS, 0, 0, 0)).getTime();
+        
+        const currentUTC = now.getTime() + now.getTimezoneOffset() * 60000;
+        const msUntilNextRotation = nextDayUTC - currentUTC;
+        
+        if (msUntilNextRotation < 0) {
+            // Cas où le script est exécuté juste après minuit UTC
+            msUntilNextRotation += MILLISECONDS_PER_DAY;
+        }
+        
+        // Démarre la première exécution (synchronisée à minuit UTC)
         setTimeout(() => {
-            rotateFilm(); 
+            rotateFilm(); // Premier changement
             
-            // DÉMARRE L'INTERVALLE RÉCURRENT D'UNE MINUTE après la première synchro
-            setInterval(rotateFilm, FILM_ROTATION_INTERVAL_MINUTES * MILLISECONDS_PER_MINUTE);
+            // DÉMARRE L'INTERVALLE RÉCURRENT DE 24 HEURES après la première synchro
+            setInterval(rotateFilm, MILLISECONDS_PER_DAY);
             
-        }, msUntilNextMinute);
+        }, msUntilNextRotation);
+        
+        console.log(`Prochain changement de film dans ${Math.floor(msUntilNextRotation / 1000 / 60 / 60)} heures.`);
 
 
         // 4. Set up Countdown Timer (Visual Update)
@@ -713,6 +738,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Déclenche l'initialisation après le chargement du DOM
+    // La fonction initialize() doit être appelée après le chargement du DOM.
+    // Si ce code est dans un fichier JS externe lié en bas du <body>, 
+    // l'appel direct 'initialize()' suffit.
+    // Sinon, utilisez l'événement DOMContentLoaded.
+    // document.addEventListener('DOMContentLoaded', initialize); 
     initialize(); 
-
+// Fin du IIFE auto-exécutant si vous en aviez un, sinon simplement l'appel
 });
