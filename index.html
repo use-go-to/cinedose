@@ -10,6 +10,15 @@
 </head>
 <body>
 
+    <div id="lock-screen">
+        <div class="lock-content">
+            <h2>CineDose Private Access</h2>
+            <p>Enter the daily code to access the Film of the Day.</p>
+            <input type="password" id="secret-code" placeholder="Enter Secret Code...">
+            <button id="unlock-btn">Access</button>
+            <p class="hint">Need the code? Contact the administrator.</p>
+        </div>
+    </div>
     <header>
         <nav>
             <h1>CineDose</h1>
@@ -28,8 +37,8 @@
                     <p id="countdown-timer" class="timer-display">Next Change: 00:00</p>
                     <p class="citation" id="film-quote">"A short quote from an AI, encouraging the user to see or rewatch the movie..."</p>
                     <div class="action-bar">
-                        
-                        
+                        <button id="check-film-btn">🎬 I'll Watch It!</button> 
+                        <span id="user-count">X users are watching today.</span>
                         
                         <a href="#" id="gomovies-link" class="gomovies-btn" target="_blank" title="Watch the film on GoMovies">
                             Watch on GoMovies
