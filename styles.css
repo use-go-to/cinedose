@@ -432,6 +432,95 @@ footer {
     width: fit-content;
 }
 
+/* --- Écran de Verrouillage Esthétique (Côté Secret) --- */
+
+#lock-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.98); /* Presque noir, très opaque */
+    z-index: 9999; /* Toujours au-dessus de tout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+}
+
+#lock-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.lock-content {
+    text-align: center;
+    padding: 40px;
+    border: 1px solid var(--color-accent);
+    border-radius: 10px;
+    max-width: 400px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--color-accent); /* Lueur rouge discrète */
+    background-color: var(--color-dark);
+}
+
+.lock-content h2 {
+    font-size: 2rem;
+    color: var(--color-accent); /* Titre en rouge du cinéma */
+    margin-bottom: 20px;
+    font-family: var(--font-title);
+    letter-spacing: 2px;
+}
+
+.lock-content p {
+    color: var(--color-light);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+#secret-code {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #555;
+    border-radius: 5px;
+    background-color: #1a1a1a;
+    color: var(--color-light);
+    font-size: 1.1rem;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+#secret-code:focus {
+    border-color: var(--color-gomovies); /* Focus en couleur GoMovies */
+    outline: none;
+}
+
+#unlock-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-gomovies);
+    color: var(--color-dark);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#unlock-btn:hover {
+    background-color: #e09819;
+}
+
+.lock-content .hint {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 20px;
+}
+
+
 /* --- Responsive (Mobile, tablets) --- */
 @media (max-width: 900px) {
     
