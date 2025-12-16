@@ -316,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "782","807","JFK","Stone, Oliver","1991","USA","189","https://www.dailymotion.com/video/x89xylx","https://gomovies.ms/movie/watch-jfk-hd-online-free-17786"
 "787","767","Wings","Shepitko, Larisa","1966","USSR","85","https://www.dailymotion.com/video/x8mqf21","https://gomovies.ms/movie/watch-wings-hd-online-free-12515"
 "792","794","Miller's Crossing","Coen, Joel & Ethan Coen","1990","USA","115","https://www.dailymotion.com/video/xx2e3a","https://gomovies.ms/movie/watch-millers-crossing-hd-online-free-16764"
-"793","792","Ferris Bueller's Day Off","Hughes, John","1986","USA","103","https://www.dailymotion.com/video/x75p5wt","https://gomovies.ms/movie/watch-ferris-buellers-day-off-hd-online-free-18475"
 "794","801","Requiem for a Dream","Aronofsky, Darren","2000","USA","100","https://www.dailymotion.com/video/x6xiju","https://gomovies.ms/movie/watch-requiem-for-a-dream-hd-online-free-10288"
 "795","774","Zelig","Allen, Woody","1983","USA","79","https://www.dailymotion.com/video/x8eafrz","https://gomovies.ms/movie/watch-zelig-hd-online-free-12774"
 "801","779","Faster, Pussycat! Kill! Kill!","Meyer, Russ","1965","USA","83","https://www.dailymotion.com/video/xz5oq3","https://gomovies.ms/movie/watch-faster-pussycat-kill-kill-hd-online-free-8024"
@@ -695,3 +694,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initialize(); 
 });
+
