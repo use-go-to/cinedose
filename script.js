@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // 🔑 CONFIGURATION
     const OMDB_API_KEY = "98e4893e"; 
     const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
-    const START_DATE_UTC = Date.UTC(2025, 11, 16); 
+    const START_DATE_UTC = Date.UTC(2025, 11, 19); 
 
     let films = [];
 
@@ -524,4 +524,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
 
