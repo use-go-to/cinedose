@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return data;
     }
 
-    // --- CALCUL DE L'INDEX ---
+    // --- CALCUL DE L'INDEX (1 film différent par jour) ---
     function calculateSequentialIndex() {
         if (films.length === 0) return 0;
         const now = new Date();
@@ -443,65 +443,48 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(url);
             const data = await response.json();
             return data.Response === "True" ? data : null;
-        } catch (error) { return null; }
+        } catch (error) { 
+            console.error("Erreur API OMDB:", error);
+            return null; 
+        }
     }
 
     // --- MISE À JOUR DE L'INTERFACE ---
     function updateFilmDisplay(details, csvRow) {
-        filmTitle.textContent = csvRow.Title.toUpperCase();
-        filmQuote.textContent = details ? `"${details.Plot}"` : `Directed by ${csvRow.Director} (${csvRow.Year}).`;
-        filmPosterImg.src = (details && details.Poster !== "N/A") ? details.Poster : 'poster-default.jpg';
+        if (filmTitle) filmTitle.textContent = csvRow.Title.toUpperCase();
         
-        const trailerId = csvRow['Trailer URL'].match(/\/video\/([a-zA-Z0-9]+)/)?.[1] || 'x5hyokx';
-        movieTrailerIframe.src = `https://www.dailymotion.com/embed/video/${trailerId}?autoplay=0&mute=1&controls=1`;
-        gomoviesLink.href = csvRow['GoMovies URL'] || '#';
-    }
+        if (filmQuote) {
+            filmQuote.textContent = details ? `"${details.Plot}"` : `Directed by ${csvRow.Director} (${csvRow.Year}).`;
+        }
 
-    // --- SYSTÈME DE VERROUILLAGE (AVEC CONSOLE CLAIRE) ---
-    function setupLockScreen() {
-        const lockScreen = document.getElementById('lock-screen');
-        const input = document.getElementById('secret-code');
-        const btn = document.getElementById('unlock-btn');
+        if (filmPosterImg) {
+            filmPosterImg.src = (details && details.Poster !== "N/A") ? details.Poster : 'poster-default.jpg';
+        }
         
-        const now = new Date();
-        // Algorithme du code secret
-        const code = String((( (now.getUTCFullYear() * 1000 + (now.getUTCMonth()+1) * 100 + now.getUTCDate()) * 17) % 8999) + 1000);
-        
-        // --- AFFICHAGE DANS LA CONSOLE (C'est ici que ça se passe !) ---
-        console.clear();
-        console.log("%c--- CINEDOSE ADMIN PANEL ---", "color: #c1121f; font-weight: bold; font-size: 16px;");
-        console.log(
-            `%c 🔑 CODE DU JOUR : ${code} `,
-            'background: #222; color: #00FF00; font-size: 22px; font-weight: bold; border: 2px solid #00FF00; padding: 10px; border-radius: 5px;'
-        );
-        console.log("%cCopiez ce code dans le champ d'accès sur la page.", "color: #888;");
+        if (movieTrailerIframe) {
+            const trailerId = csvRow['Trailer URL']?.match(/\/video\/([a-zA-Z0-9]+)/)?.[1] || 'x5hyokx';
+            movieTrailerIframe.src = `https://www.dailymotion.com/embed/video/${trailerId}?autoplay=0&mute=1&controls=1`;
+        }
 
-        const unlock = () => {
-            if (input.value.trim() === code) {
-                lockScreen.classList.add('hidden');
-                setTimeout(() => { lockScreen.style.display = 'none'; }, 1000);
-                localStorage.setItem('cineDose_unlocked_2025', code);
-            } else {
-                alert('Code incorrect !');
-            }
-        };
-
-        btn.addEventListener('click', unlock);
-        input.addEventListener('keypress', (e) => { if(e.key === 'Enter') unlock(); });
-
-        if (localStorage.getItem('cineDose_unlocked_2025') === code) {
-            lockScreen.style.display = 'none';
+        if (gomoviesLink) {
+            gomoviesLink.href = csvRow['GoMovies URL'] || '#';
         }
     }
 
     // --- COMPTE À REBOURS ---
     function updateCountdown() {
+        if (!countdownTimer) return;
         const now = new Date();
         const nextDay = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
         const currentUTC = now.getTime() + now.getTimezoneOffset() * 60000;
         const diff = nextDay - currentUTC;
+        
         let sec = Math.floor(diff / 1000);
-        if (sec <= 0) { location.reload(); return; }
+        if (sec <= 0) { 
+            location.reload(); 
+            return; 
+        }
+
         const h = String(Math.floor(sec / 3600)).padStart(2, '0');
         sec %= 3600;
         const m = String(Math.floor(sec / 60)).padStart(2, '0');
@@ -511,6 +494,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIALISATION ---
     async function init() {
+        // Note : Assurez-vous que la variable 'csvData' est bien définie avant ce script
+        if (typeof csvData === 'undefined') {
+            console.error("La variable csvData est introuvable.");
+            return;
+        }
+
         films = parseCSV(csvData);
         if (films.length === 0) return;
 
@@ -518,11 +507,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const details = await fetchFilmDetails(films[index].Title, films[index].Year);
         updateFilmDisplay(details, films[index]);
 
-        setupLockScreen();
+        // Mise à jour du timer toutes les secondes
         setInterval(updateCountdown, 1000);
+        updateCountdown(); // Appel immédiat pour éviter le délai d'une seconde
     }
 
     init();
 });
+
 
 
