@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "1","1","Citizen Kane","Welles, Orson","1941","USA","119","https://www.dailymotion.com/video/x2lbwjq","https://gomovies.ms/movie/watch-citizen-kane-hd-online-free-18137"
 "2","2","Vertigo","Hitchcock, Alfred","1958","USA","128","https://www.dailymotion.com/video/x8e52fg","https://gomovies.ms/movie/watch-vertigo-hd-online-free-18629"
 "3","3","2001: A Space Odyssey","Kubrick, Stanley","1968","UK","139","https://www.dailymotion.com/video/x6j5yq2","https://gomovies.ms/movie/watch-2001-a-space-odyssey-hd-online-free-19523"
-"7","7","8½","Fellini, Federico","1963","Italy","135","https://www.dailymotion.com/video/xasld","https://gomovies.ms/movie/watch-8-hd-online-free-85122"
 "11","11","Singin' in the Rain","Donen, Stanley & Gene Kelly","1952","USA","102","https://www.dailymotion.com/video/x2j8o0u","https://gomovies.ms/movie/watch-singin-in-the-rain-hd-online-free-17646"
 "13","13","Apocalypse Now","Coppola, Francis Ford","1979","USA","150","https://www.dailymotion.com/video/x2lbwjo","https://gomovies.ms/movie/watch-apocalypse-now-hd-online-free-18950"
 "15","14","Taxi Driver","Scorsese, Martin","1976","USA","113","https://www.dailymotion.com/video/x3iy55","https://gomovies.ms/movie/watch-taxi-driver-hd-online-free-19066"
@@ -525,3 +524,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
