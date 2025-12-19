@@ -316,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
 "782","807","JFK","Stone, Oliver","1991","USA","189","https://www.dailymotion.com/video/x89xylx","https://gomovies.ms/movie/watch-jfk-hd-online-free-17786"
 "787","767","Wings","Shepitko, Larisa","1966","USSR","85","https://www.dailymotion.com/video/x8mqf21","https://gomovies.ms/movie/watch-wings-hd-online-free-12515"
 "792","794","Miller's Crossing","Coen, Joel & Ethan Coen","1990","USA","115","https://www.dailymotion.com/video/xx2e3a","https://gomovies.ms/movie/watch-millers-crossing-hd-online-free-16764"
+"793","792","Ferris Bueller's Day Off","Hughes, John","1986","USA","103","https://www.dailymotion.com/video/x75p5wt","https://gomovies.ms/movie/watch-ferris-buellers-day-off-hd-online-free-18475"
 "794","801","Requiem for a Dream","Aronofsky, Darren","2000","USA","100","https://www.dailymotion.com/video/x6xiju","https://gomovies.ms/movie/watch-requiem-for-a-dream-hd-online-free-10288"
 "795","774","Zelig","Allen, Woody","1983","USA","79","https://www.dailymotion.com/video/x8eafrz","https://gomovies.ms/movie/watch-zelig-hd-online-free-12774"
 "801","779","Faster, Pussycat! Kill! Kill!","Meyer, Russ","1965","USA","83","https://www.dailymotion.com/video/xz5oq3","https://gomovies.ms/movie/watch-faster-pussycat-kill-kill-hd-online-free-8024"
@@ -390,12 +391,9 @@ document.addEventListener('DOMContentLoaded', () => {
 "998","985","Sweetie","Campion, Jane","1989","Australia","97","https://www.dailymotion.com/video/x34bwef","https://gomovies.ms/movie/watch-sweetie-hd-online-free-128395"
 
 `;
-// 🔑 CONFIGURATION
+   // 🔑 CONFIGURATION
     const OMDB_API_KEY = "98e4893e"; 
     const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
-    
-    // DATE DE RÉFÉRENCE : Aujourd'hui (16 Décembre 2025)
-    // Le film à l'index 0 (Citizen Kane) s'affichera à cette date précise.
     const START_DATE_UTC = Date.UTC(2025, 11, 16); 
 
     let films = [];
@@ -405,8 +403,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const filmQuote = document.getElementById('film-quote');
     const filmPosterImg = document.getElementById('film-poster-img');
     const movieTrailerIframe = document.getElementById('movie-trailer');
-    const checkBtn = document.getElementById('check-film-btn');
-    const userCountSpan = document.getElementById('user-count');
     const gomoviesLink = document.getElementById('gomovies-link');
     const countdownTimer = document.getElementById('countdown-timer');
 
@@ -430,17 +426,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return data;
     }
 
-    // --- CALCUL DE L'INDEX SÉQUENTIEL (Ligne 1, 2, 3...) ---
+    // --- CALCUL DE L'INDEX ---
     function calculateSequentialIndex() {
         if (films.length === 0) return 0;
         const now = new Date();
         const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-        
-        // Calcule le nombre de jours écoulés depuis le début
         const diffInMs = todayUTC - START_DATE_UTC;
         const daysSinceStart = Math.max(0, Math.floor(diffInMs / MILLISECONDS_PER_DAY));
-        
-        // Retourne l'index correspondant à la ligne du CSV
         return daysSinceStart % films.length;
     }
 
@@ -452,57 +444,53 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(url);
             const data = await response.json();
             return data.Response === "True" ? data : null;
-        } catch (error) {
-            return null;
-        }
+        } catch (error) { return null; }
     }
 
     // --- MISE À JOUR DE L'INTERFACE ---
     function updateFilmDisplay(details, csvRow) {
-        const title = csvRow.Title;
-        filmTitle.textContent = title.toUpperCase();
+        filmTitle.textContent = csvRow.Title.toUpperCase();
         filmQuote.textContent = details ? `"${details.Plot}"` : `Directed by ${csvRow.Director} (${csvRow.Year}).`;
         filmPosterImg.src = (details && details.Poster !== "N/A") ? details.Poster : 'poster-default.jpg';
         
         const trailerId = csvRow['Trailer URL'].match(/\/video\/([a-zA-Z0-9]+)/)?.[1] || 'x5hyokx';
         movieTrailerIframe.src = `https://www.dailymotion.com/embed/video/${trailerId}?autoplay=0&mute=1&controls=1`;
-
         gomoviesLink.href = csvRow['GoMovies URL'] || '#';
-        
-        const seed = new Date().getUTCDate() + title.length;
-        userCountSpan.textContent = `${(seed % 150) + 45} users are watching today.`;
     }
 
-    // --- SYSTÈME DE VERROUILLAGE ---
+    // --- SYSTÈME DE VERROUILLAGE (AVEC CONSOLE CLAIRE) ---
     function setupLockScreen() {
         const lockScreen = document.getElementById('lock-screen');
         const input = document.getElementById('secret-code');
         const btn = document.getElementById('unlock-btn');
         
         const now = new Date();
-        // Génère le code basé sur la date du jour
+        // Algorithme du code secret
         const code = String((( (now.getUTCFullYear() * 1000 + (now.getUTCMonth()+1) * 100 + now.getUTCDate()) * 17) % 8999) + 1000);
         
-        // Affiche le code dans la console pour vous
-        console.log("--- DEBUG ---");
-        console.log("Code secret du jour : " + code);
-        console.log("-------------");
+        // --- AFFICHAGE DANS LA CONSOLE (C'est ici que ça se passe !) ---
+        console.clear();
+        console.log("%c--- CINEDOSE ADMIN PANEL ---", "color: #c1121f; font-weight: bold; font-size: 16px;");
+        console.log(
+            `%c 🔑 CODE DU JOUR : ${code} `,
+            'background: #222; color: #00FF00; font-size: 22px; font-weight: bold; border: 2px solid #00FF00; padding: 10px; border-radius: 5px;'
+        );
+        console.log("%cCopiez ce code dans le champ d'accès sur la page.", "color: #888;");
 
         const unlock = () => {
             if (input.value.trim() === code) {
                 lockScreen.classList.add('hidden');
-                localStorage.setItem('cineDose_unlocked', code);
-                // Active l'autoplay une fois déverrouillé
-                movieTrailerIframe.src = movieTrailerIframe.src.replace('autoplay=0', 'autoplay=1');
+                setTimeout(() => { lockScreen.style.display = 'none'; }, 1000);
+                localStorage.setItem('cineDose_unlocked_2025', code);
             } else {
-                alert('Invalid code. Please try again.');
+                alert('Code incorrect !');
             }
         };
 
         btn.addEventListener('click', unlock);
         input.addEventListener('keypress', (e) => { if(e.key === 'Enter') unlock(); });
 
-        if (localStorage.getItem('cineDose_unlocked') === code) {
+        if (localStorage.getItem('cineDose_unlocked_2025') === code) {
             lockScreen.style.display = 'none';
         }
     }
@@ -513,10 +501,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextDay = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
         const currentUTC = now.getTime() + now.getTimezoneOffset() * 60000;
         const diff = nextDay - currentUTC;
-        
         let sec = Math.floor(diff / 1000);
         if (sec <= 0) { location.reload(); return; }
-
         const h = String(Math.floor(sec / 3600)).padStart(2, '0');
         sec %= 3600;
         const m = String(Math.floor(sec / 60)).padStart(2, '0');
@@ -535,13 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setupLockScreen();
         setInterval(updateCountdown, 1000);
-
-        checkBtn.addEventListener('click', () => {
-            checkBtn.textContent = '✅ Watched!';
-            checkBtn.disabled = true;
-        });
     }
 
     init();
 });
-
